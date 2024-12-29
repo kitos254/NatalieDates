@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './index.css';
-//import infinityLogo from './assets/infinity-logo.png'; // Make sure the path is correct
 
 function App() {
   const [countdown, setCountdown] = useState('');
@@ -32,8 +31,8 @@ function App() {
   return (
     <div>
       <header>
-        <img src={infinityLogo} alt="Infinity Logo" className="infinity-logo" />
-        <h1>Introducing "Infinity" Chat App</h1>
+        <img src="/image.png" alt="Infinity Logo" className="infinity-logo" />
+        <h1>Infinity</h1>
         <p>Launching at midnight on January 20th, 2025!</p>
       </header>
 
