@@ -17,9 +17,22 @@ const Navbar = () => {
     <header>
       <nav className="navbar">
         <div className="navbar-container">
-          <div className="logo">
-            <img src="/aegis.png" className="logo-img" />
+          <div
+            style={{
+              borderRadius: "50%",
+              overflow: "hidden",
+              width: "80px",
+              height: "80px",
+              marginTop: "10px",
+              zIndex:1000,
+            }}
+          >
+            <img
+              src="/logo.jpeg"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
+
           <div className={`nav-links ${menuOpen ? "active" : ""}`}>
             <button className="close-btn" onClick={toggleMenu}>
               ×
@@ -32,29 +45,29 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  to="/donate"
+                  to="/updates"
                   className="nav-item"
                   onClick={handleMenuItemClick}
                 >
-                  Donate
+                  Updates
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/involve"
+                  to="/SignIn"
                   className="nav-item"
                   onClick={handleMenuItemClick}
                 >
-                  Get Involved
+                  Sign In
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/apply"
+                  to="/contact"
                   className="nav-item"
                   onClick={handleMenuItemClick}
                 >
-                  Apply for Aid
+                  Contact
                 </Link>
               </li>
             </ul>

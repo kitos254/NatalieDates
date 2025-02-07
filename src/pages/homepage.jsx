@@ -73,7 +73,7 @@ const Homepage = () => {
     <div
       style={{
         padding: "20px",
-        backgroundImage: ` url('bg1.jpg')`,
+        backgroundImage: ` url('bgmain.jpg')`,
         borderRadius: "10px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
         textAlign: "left",
@@ -84,26 +84,26 @@ const Homepage = () => {
         style={{
           borderRadius: "10px",
           boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-          backgroundImage: ` url('back.png')`,
+          backgroundImage: `url('bgheader.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          height: "7rem",
-          padding: "10px",
+          height: "5rem", // Reduced height
+          padding: "5px", // Reduced padding
           width: "100%",
           color: "white",
         }}
       >
         <motion.h1
           style={{
-            fontSize: isSmallScreen ? "30px" : "50px",
+            fontSize: isSmallScreen ? "22px" : "45px", // Slightly reduced font size
             fontWeight: "800",
-            color: "#db2777",
+            color: "rgb(252, 252, 255)",
             textShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            marginBottom: "5px",
+            marginBottom: "3px", // Reduced spacing between title and tagline
           }}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -115,26 +115,27 @@ const Homepage = () => {
               fontFamily: "'Playfair Display', serif",
               fontStyle: "italic",
               fontWeight: "bold",
-              fontSize: isSmallScreen ? "30px" : "50px",
-              color: "#db2777",
-              textShadow: "2px 2px 8px rgba(0, 0, 0, 0.3)",
-              letterSpacing: "1.5px",
-              background: "linear-gradient(to right, #db2777, #ff8a00)",
+              fontSize: isSmallScreen ? "22px" : "45px", // Adjusted size for compact look
+              background: "linear-gradient(to right,rgb(164, 148, 245), rgb(228, 206, 240))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              textShadow: "none",
+              letterSpacing: "1px", // Reduced letter spacing
             }}
           >
             Natalie Dates
           </span>
         </motion.h1>
+
         <motion.p
           style={{
-            fontSize: isSmallScreen ? "10px" : "15px",
+            fontSize: isSmallScreen ? "9px" : "14px", // Slightly reduced tagline font size
             fontWeight: "500",
             fontStyle: "italic",
-            color: "#555",
+            color: "white",
             textShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            letterSpacing: "1px",
+            letterSpacing: "0.5px", // Reduced letter spacing
+            marginTop: "2px", // Minimized space above the tagline
           }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

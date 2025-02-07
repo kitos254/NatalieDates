@@ -1,15 +1,24 @@
 /* Navbar styles */
 .navbar {
-    
-    position: fixed; /* Fix the navbar at the top of the page */
-    top: 0;
+    position: fixed; 
+    top: 10px;
     left: 10px;
-    width: 95%; /* Full width */
+    width: 97%; 
     z-index: 1000; /* Ensure it stays on top of other elements */
-    background-color: #0D47A1; /* Dark blue */
+    background: linear-gradient(90deg, #dce1e7, #a871a1, #1f021b); /* Dark to light blue gradient */
     color: white; /* Text color */
     padding: 1rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.navbar::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color:white;
 }
 
 body {
@@ -21,6 +30,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-height: 20px;
 }
 
 .logo-link {
@@ -53,7 +63,7 @@ body {
     color: white;
     font-size: 1rem;
     padding: 10px 20px;
-    background-color: #0D47A1;
+    background: linear-gradient(90deg, #3b022d, #862079, #eeb3e6);
     border: none;
     border-radius: 20px;
     transition: all 0.3s ease-in-out;
@@ -103,7 +113,7 @@ body {
         top: 0;
         right: 0;
         border-radius: 10px;
-        background-color: rgba(13, 71, 161, 0.95); /* Add slight transparency */
+        background: linear-gradient(90deg, #dce1e7, #a871a1, #1f021b);
         backdrop-filter: blur(10px); /* Add a blur effect for modern aesthetics */
         width: 60%; /* 3/5 of the screen width */
         max-height: 100%; /* Ensure it doesn't extend beyond the screen */
@@ -164,6 +174,7 @@ body {
     }
 
     .nav-links ul {
+        
         display: block;
         margin-top: 2rem; /* Space below the close button */
     }
@@ -174,6 +185,7 @@ body {
         padding: 10px 15px; /* Adjust padding for better spacing */
         border-radius: 10px; /* Rounded corners for items */
         transition: all 0.3s ease-in-out; /* Smooth item transitions */
+        background: linear-gradient(90deg, #3b022d, #862079, #eeb3e6);
     }
 
     .nav-item:hover {
