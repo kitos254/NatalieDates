@@ -6,28 +6,43 @@ const Homepage = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeImages, setActiveImages] = useState([]);
+  const [background, setBackground] = useState("");
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = isSmallScreen ? "bg2.jpg" : "bg3.jpg";
+    img.onload = () => setBackground(`url(${img.src})`);
+  }, [isSmallScreen]);
 
   // Image groups: Each has 3 rotating images
   const imageGroups = [
     {
-      images: ["couple1.jpg", "couple2.jpg", "couple3.jpg","couple4.jpg"],
+      images: ["couple1.jpg", "couple2.jpg", "couple3.jpg", "couple4.jpg"],
       heading: "Find Love, Meet New People, Create Memories!",
       text: "Embark on a journey of love and connection, meeting people from all corners of the world.",
       text2:
         "Are you ready to embrace new connections and unforgettable moments? Whether you're searching for true love, meaningful friendships, or simply someone to share life's special moments with, we’re here to make it happen. Connect with like-minded singles, engage in real conversations, and build lasting relationships. Love is just a conversation away—start your journey today!",
     },
     {
-      images: ["girl5.jpg","girl1.jpg", "girl2.jpg","man.jpg","girl3.jpg","girl4.jpg"],
-      heading:"Explore various types of relationship!",
-      text:"Get ready to embrace new experiences and enjoy the very best that life has to offer, filled with excitement, passion, and endless possibilities.",
-      text2: "Explore a diverse spectrum of relationships, from casual encounters to deeply intimate and meaningful connections. Whether you're seeking excitement, companionship, or long-term emotional fulfillment, you can connect with affluent partners who are willing to support you while fostering a genuine and lasting bond built on trust, respect, and shared experiences.",
+      images: [
+        "girl5.jpg",
+        "girl1.jpg",
+        "girl2.jpg",
+        "man.jpg",
+        "girl3.jpg",
+        "girl4.jpg",
+      ],
+      heading: "Explore various types of relationship!",
+      text: "Get ready to embrace new experiences and enjoy the very best that life has to offer, filled with excitement, passion, and endless possibilities.",
+      text2:
+        "Explore a diverse spectrum of relationships, from casual encounters to deeply intimate and meaningful connections. Whether you're seeking excitement, companionship, or long-term emotional fulfillment, you can connect with affluent partners who are willing to support you while fostering a genuine and lasting bond built on trust, respect, and shared experiences.",
     },
     {
-      images: ["add1.jpg","add2.jpg","add3.jpg","add4.jpg"],
-      heading:"Seemingless connectivity!",
-      text:"Find love without limits through seamless video calls and chats. One message could change everything!",
-      text2:"Step into a world where love knows no boundaries. Dive into the ultimate dating experience with seamless video calls and endless chats, connecting you with millions of people from every corner of the globe. Whether you're seeking a deep, meaningful relationship or a fun, spontaneous connection, this is where hearts meet and sparks fly. Let every conversation bring you closer to someone special, turning moments into memories and strangers into soulmates. Love is just a message away—are you ready to embrace it?",
-
+      images: ["add1.jpg", "add2.jpg", "add3.jpg", "add4.jpg"],
+      heading: "Seemingless connectivity!",
+      text: "Find love without limits through seamless video calls and chats. One message could change everything!",
+      text2:
+        "Step into a world where love knows no boundaries. Dive into the ultimate dating experience with seamless video calls and endless chats, connecting you with millions of people from every corner of the globe. Whether you're seeking a deep, meaningful relationship or a fun, spontaneous connection, this is where hearts meet and sparks fly. Let every conversation bring you closer to someone special, turning moments into memories and strangers into soulmates. Love is just a message away—are you ready to embrace it?",
     },
   ];
 
@@ -38,7 +53,9 @@ const Homepage = () => {
       setActiveImages((prev) =>
         prev.map((img, i) => {
           const currentIndex = imageGroups[i].images.indexOf(img);
-          return imageGroups[i].images[(currentIndex + 1) % imageGroups[i].images.length]; // Rotate images
+          return imageGroups[i].images[
+            (currentIndex + 1) % imageGroups[i].images.length
+          ]; // Rotate images
         })
       );
     }, 10000); // Change every 10 seconds
@@ -143,9 +160,7 @@ const Homepage = () => {
             key={index}
             style={{
               display: "flex",
-              backgroundImage: isSmallScreen
-                ? ` url('bg2.jpg')`
-                : ` url('bg3.jpg')`,
+              backgroundImage: background,
               flexDirection: isSmallScreen
                 ? "column"
                 : index % 2 === 0
@@ -153,11 +168,10 @@ const Homepage = () => {
                 : "row-reverse",
               alignItems: "center",
               gap: "40px",
-              background: "#f9f9f9",
               paddingLeft: isSmallScreen ? "0" : "30px",
               paddingRight: isSmallScreen ? "0" : "30px",
-              paddingTop:"10px",
-              paddingBottom:"10px",
+              paddingTop: "10px",
+              paddingBottom: "10px",
               borderRadius: "12px",
               boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
               transition: "transform 0.3s ease-in-out",
@@ -166,7 +180,6 @@ const Homepage = () => {
             {/* Image Container */}
             <div
               style={{
-                
                 position: "relative",
                 width: isSmallScreen ? "100%" : "60%",
                 maxWidth: "350px",
@@ -215,7 +228,7 @@ const Homepage = () => {
                   background: "rgba(0, 0, 0, 0.8)",
                   color: "white",
                   paddingTop: "10px",
-                  paddingBottom:"10px",
+                  paddingBottom: "10px",
                   textAlign: "center",
                   borderRadius: "0 0 12px 12px",
                   fontSize: isSmallScreen ? "11px" : "18px",
