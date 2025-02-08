@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar";
-import Footer from "./components/footer"; 
+import Footer from "./components/footer";
 import { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify";
 import HomePage from "./pages/homepage";
 import Updates from "./pages/update";
 import Contact from "./pages/contact";
 import Signin from "./pages/Signin";
+import { isInAppBrowser, redirectToBrowser } from "./utils/detectInAppBrowser";
 
 const App = () => {
+  useEffect(() => {
+    if (isInAppBrowser()) {
+      redirectToBrowser();
+    }
+  }, []);
+
   return (
     <div
       style={{
