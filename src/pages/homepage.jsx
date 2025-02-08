@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Footer from "../components/footer";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Homepage = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
@@ -15,7 +17,188 @@ const Homepage = () => {
     img.onload = () => setBackground(`url(${img.src})`);
   }, [isSmallScreen]);
 
+  const [name, setName] = useState("");
+  const [image, setImage] = useState(null);
+  const [title, setTitle] = useState("");
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState(0);
+
+  // Handle Image Upload
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
+  };
+
+  // Handle Form Submission
+  const submitReview = (e) => {
+    e.preventDefault();
+
+    // Show Toast Notification
+    toast.error("Only subscribed users can leave a review.", {
+      position: "top-center",
+      autoClose: 3000,
+    });
+
+    // Reset Form
+    setName("");
+    setImage(null);
+    setTitle("");
+    setComment("");
+    setRating(0);
+  };
+
   // Image groups: Each has 3 rotating images
+  const reviews = [
+    {
+      id: 14,
+      name: "Tumamela",
+      title: "Reliable Service",
+      comment:
+        "I'm from South Africa and I really appreciate this kenyan Platform. I did't know if it will work but I am glad for the experience I've had so far. Thanks Natalie's Dates",
+      img: "pro14.jpg",
+      rating: 5,
+    },
+    {
+      id: 1,
+      name: "Peter Motiso",
+      title: "Customer support",
+      comment:
+        "Once I made a payment, a customer service agent reached out to help me.",
+      img: "pro1.jpg",
+      rating: 5,
+    },
+    {
+      id: 2,
+      name: "Anonymous",
+      title: "Form ya sugarmummy",
+      comment:
+        "Ukitaka sugarmummy wakuu, hapa ndio place 💯💯✔ Nimejiwahii kadhaa 😍😍😍😍  We register na uchil. Hawa wasee watakupanga. Usiwe na was😅😅",
+      img: "pro3.jpg",
+      rating: 5,
+    },
+    {
+      id: 3,
+      name: "Karanja",
+      title: "Nice Dating Experience",
+      comment: "I have met a whole number of new people.",
+      img: "pro2.jpg",
+      rating: 4,
+    },
+
+    {
+      id: 4,
+      name: "Emmaculate Ndungu",
+      title: "Met Someone Special",
+      comment:
+        "I met someone amazing within a few weeks of joining! But muangalie hiyo side ya wababa. Leteni wazungu kadhaa",
+      img: "pro4.jpg",
+      rating: 5,
+    },
+    {
+      id: 5,
+      name: "David Martinez",
+      title: "Good Experience Overall",
+      comment:
+        "Nice platform with great features, but can improve in some areas. I'm glad to have met alot of beatifull african women",
+      img: "pro5.jpg",
+      rating: 4,
+    },
+    {
+      id: 6,
+      name: "Martin Kim",
+      title: "Fast Response from Support",
+      comment: "Had a billing issue, and it was resolved in no time. Kudos!",
+      img: "pro6.jpg",
+      rating: 5,
+    },
+    {
+      id: 7,
+      name: "Ndirangu",
+      title: "Lots of Interesting People",
+      comment: "I love the diversity of people I have met here.",
+      img: "pro7.jpg",
+      rating: 5,
+    },
+    {
+      id: 8,
+      name: "Nobaa KE",
+      title: "Highly Recommended",
+      comment: "Smooth interface, easy to use, and great customer support!",
+      img: "pro8.jpg",
+      rating: 5,
+    },
+    {
+      id: 9,
+      name: "Olivia Taylor",
+      title: "Better Than Expected",
+      comment:
+        "Was skeptical at first but ended up really liking the platform.",
+      img: "pro9.jpg",
+      rating: 4,
+    },
+    {
+      id: 10,
+      name: "Kennedy Mutua",
+      title: "Worth it",
+      comment:
+        "Trust the process wakuu. Hamtaregret. Hii platform imenijenga. Kuna wazungu wengi by the way",
+      img: "pro10.jpg",
+      rating: 5,
+    },
+    {
+      id: 11,
+      name: "Sophia Hernandez",
+      title: "Lots of Genuine People",
+      comment: "I have connected with so many wonderful people here.",
+      img: "pro11.jpg",
+      rating: 5,
+    },
+    {
+      id: 12,
+      name: "Pauline",
+      title: "One of the Best Platforms",
+      comment: "Its been a nice platform so far. I highly recomend it",
+      img: "pro12.jpg",
+      rating: 5,
+    },
+    {
+      id: 13,
+      name: "Robinson Mwendwa",
+      title: "Rich babies",
+      comment:
+        "SugarMummy huku wanabamba. Very beautifull and curvy alafu wako madoo manze",
+      img: "pro13.jpg",
+      rating: 4,
+    },
+
+    {
+      id: 15,
+      name: "Emily Lewis",
+      title: "Excellent Support",
+      comment: "Support team was very polite and professional!",
+      img: "pro15.jpg",
+      rating: 5,
+    },
+    // More reviews up to 60 following the same structure...
+  ];
+
+  const [visibleReviews, setVisibleReviews] = useState(3);
+
+  // Calculate overall rating
+  const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+  const overallRating = (totalRating / reviews.length).toFixed(1);
+
+  // Function to show more reviews
+  const showMoreReviews = () => {
+    setVisibleReviews((prev) => prev + 5);
+  };
+
+  const showLessReviews = () => {
+    setVisibleReviews(3);
+  };
+
   const imageGroups = [
     {
       images: ["couple1.jpg", "couple2.jpg", "couple3.jpg", "couple4.jpg"],
@@ -73,7 +256,6 @@ const Homepage = () => {
   return (
     <div
       style={{
-        
         backgroundImage: ` url('bgmain.jpg')`,
         borderRadius: "10px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
@@ -82,12 +264,12 @@ const Homepage = () => {
         color: "white",
         top: "0px",
         left: "0px",
-        width: isSmallScreen?"92%":"98%",
+        width: isSmallScreen ? "92%" : "98%",
         marginTop: "70px",
         overflow: "hidden",
         padding: "1rem",
         position: "absolute",
-        overflowY:"hidden"
+        overflowY: "hidden",
       }}
     >
       {/* Title Section */}
@@ -277,14 +459,339 @@ const Homepage = () => {
           </div>
         ))}
       </div>
-      <div style={{
-        width:"110%",
-        marginLeft:"-20px",
-        marginBottom:"-20px",
 
-      }}><Footer/></div>
+      <div
+        style={{
+          width: isSmallScreen ? "91%" : "98%",
+          margin: "20px auto",
+          padding: "20px",
+          borderRadius: "12px",
+          background: "linear-gradient(135deg, #ff758c, #ff7eb3)",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          fontFamily: "'Poppins', sans-serif",
+          color: "#fff",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "15px",
+          }}
+        >
+          <h2 style={{ fontSize: "22px", fontWeight: "bold", margin: 0 }}>
+            💖 User Love Notes
+          </h2>
+          <strong style={{ fontSize: "20px", color: "#ffd700" }}>
+            ⭐ {overallRating}
+          </strong>
+        </div>
+
+        {reviews.slice(0, visibleReviews).map((review, index) => (
+          <div
+            key={review.id}
+            style={{
+              marginBottom: "10px",
+              display: "flex",
+              borderRadius: "10px",
+              alignItems: "center",
+              padding: "10px",
+              backgroundColor: index % 2 === 0 ? "#ffebf0" : "#ffc2d1",
+              color: "#333",
+              boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.05)",
+            }}
+          >
+            <img
+              src={review.img}
+              alt={review.name}
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                marginRight: "10px",
+                border: "2px solid #ff4d79",
+              }}
+            />
+            <div style={{ flex: 1 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <p
+                  style={{
+                    fontWeight: "bold",
+                    marginBottom: "4px",
+                    fontSize: "16px",
+                    color: "#ff3366",
+                  }}
+                >
+                  {review.name} 💕
+                </p>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "#ff9800",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {"⭐".repeat(review.rating)}
+                </p>
+              </div>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "#ff3366",
+                  fontStyle: "italic",
+                  fontWeight: "500",
+                }}
+              >
+                "{review.title}"
+              </p>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#555",
+                }}
+              >
+                {review.comment}
+              </p>
+            </div>
+          </div>
+        ))}
+
+        {/* Show More Button */}
+        {(visibleReviews < reviews.length || visibleReviews > 3) && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "15px",
+            }}
+          >
+            {visibleReviews > 3 && (
+              <span
+                onClick={showLessReviews}
+                style={{
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  color: "#fff",
+                  backgroundColor: "#ff4d79",
+                  padding: "6px 12px",
+                  borderRadius: "20px",
+                  transition: "all 0.3s",
+                  fontWeight: "bold",
+                }}
+                onMouseOver={(e) => (e.target.style.opacity = "0.8")}
+                onMouseOut={(e) => (e.target.style.opacity = "1")}
+              >
+                Show Less ⬆️
+              </span>
+            )}
+            {visibleReviews < reviews.length && (
+              <span
+                onClick={showMoreReviews}
+                style={{
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  color: "#fff",
+                  backgroundColor: "#ff4d79",
+                  padding: "6px 12px",
+                  borderRadius: "20px",
+                  transition: "all 0.3s",
+                  fontWeight: "bold",
+                  marginLeft: "10px",
+                }}
+                onMouseOver={(e) => (e.target.style.opacity = "0.8")}
+                onMouseOut={(e) => (e.target.style.opacity = "1")}
+              >
+                Show More ⬇️
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+
+      <div
+        style={{
+          width: isSmallScreen ? "90%" : "98%",
+          margin: "20px auto",
+          padding: "20px",
+          borderRadius: "12px",
+          background: "linear-gradient(135deg, #ff758c, #ff7eb3)",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          fontFamily: "'Poppins', sans-serif",
+          color: "#fff",
+        }}
+      >
+        <h2
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+            marginBottom: "10px",
+          }}
+        >
+          💕 Leave a Love Note
+        </h2>
+
+        <form
+          onSubmit={submitReview}
+          style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+        >
+          {/* Name Input */}
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            style={{
+              padding: "10px",
+              borderRadius: "8px",
+              border: "none",
+              fontSize: "14px",
+              outline: "none",
+              color: "#333",
+            }}
+          />
+
+          {/* Profile Picture Upload */}
+          <label
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+          >
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              hidden
+            />
+            <div
+              style={{
+                width: "80px",
+                height: "80px",
+                borderRadius: "50%",
+                backgroundColor: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                marginBottom: "10px",
+                border: "2px solid #ff4d79",
+                cursor: "pointer",
+              }}
+            >
+              {image ? (
+                <img
+                  src={image}
+                  alt="Profile"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : (
+                <p style={{ color: "#ff4d79", fontSize: "12px" }}>
+                  Upload Photo
+                </p>
+              )}
+            </div>
+          </label>
+
+          {/* Title Input */}
+          <input
+            type="text"
+            placeholder="Title (e.g., 'Loved this!')"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            style={{
+              padding: "10px",
+              borderRadius: "8px",
+              border: "none",
+              fontSize: "14px",
+              outline: "none",
+              color: "#333",
+            }}
+          />
+
+          {/* Review Textarea */}
+          <textarea
+            placeholder="Write your review here..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            required
+            rows="4"
+            style={{
+              padding: "10px",
+              borderRadius: "8px",
+              border: "none",
+              fontSize: "14px",
+              outline: "none",
+              color: "#333",
+              resize: "none",
+            }}
+          ></textarea>
+
+          {/* Star Rating Selection */}
+          <div style={{ textAlign: "center", margin: "10px 0" }}>
+            <p style={{ marginBottom: "5px", fontWeight: "bold" }}>
+              Rate your experience:
+            </p>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span
+                key={star}
+                onClick={() => setRating(star)}
+                style={{
+                  fontSize: "30px",
+                  cursor: "pointer",
+                  color: rating >= star ? "gold" : "#ddd", // Ensure color updates correctly
+                  transition: "color 0.3s",
+                  margin: "0 3px",
+                }}
+              >
+                ★
+              </span>
+            ))}
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            style={{
+              backgroundColor: "#ff4d79",
+              border: "none",
+              padding: "10px",
+              borderRadius: "8px",
+              color: "#fff",
+              fontSize: "16px",
+              cursor: "pointer",
+              transition: "background 0.3s",
+              fontWeight: "bold",
+            }}
+            onMouseOver={(e) => (e.target.style.opacity = "0.8")}
+            onMouseOut={(e) => (e.target.style.opacity = "1")}
+          >
+            💌 Submit Review
+          </button>
+        </form>
+      </div>
+
+      <div
+        style={{
+          width: "110%",
+          marginLeft: "-20px",
+          marginBottom: "-20px",
+        }}
+      >
+        <Footer />
+      </div>
     </div>
-    
   );
 };
 
