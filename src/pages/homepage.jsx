@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Footer from "../components/footer";
 
 const Homepage = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
@@ -72,11 +73,24 @@ const Homepage = () => {
   return (
     <div
       style={{
-        padding: "20px",
+        
         backgroundImage: ` url('bgmain.jpg')`,
         borderRadius: "10px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
         textAlign: "left",
+        
+        
+       
+        marginLeft: "0",
+        color: "white",
+        top: "0px",
+        left: "0px",
+        width: isSmallScreen?"92%":"97.5%",
+        marginTop: "70px",
+        overflowX: "hidden",
+        padding: "1rem",
+        position: "absolute",
+        overflowY:"hidden"
       }}
     >
       {/* Title Section */}
@@ -116,7 +130,8 @@ const Homepage = () => {
               fontStyle: "italic",
               fontWeight: "bold",
               fontSize: isSmallScreen ? "22px" : "45px", // Adjusted size for compact look
-              background: "linear-gradient(to right,rgb(164, 148, 245), rgb(228, 206, 240))",
+              background:
+                "linear-gradient(to right,rgb(164, 148, 245), rgb(228, 206, 240))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               textShadow: "none",
@@ -265,7 +280,14 @@ const Homepage = () => {
           </div>
         ))}
       </div>
+      <div style={{
+        width:"110%",
+        marginLeft:"-20px",
+        marginBottom:"-20px",
+
+      }}><Footer/></div>
     </div>
+    
   );
 };
 

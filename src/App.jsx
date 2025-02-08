@@ -5,6 +5,7 @@ import Footer from "./components/footer"; // Ensure Footer is imported
 import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/homepage";
 import Updates from "./pages/update";
+import Contact from "./pages/contact";
 
 const App = () => {
   return (
@@ -19,11 +20,13 @@ const App = () => {
         <Navbar />
         <main style={{ flex: 1, padding: "20px" }}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+           
             <Route path="/updates" element={<Updates />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />
+        <Routes> <Route path="/" element={<HomePage />} /></Routes>
         <Toaster />
       </Router>
     </div>
