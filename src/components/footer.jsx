@@ -23,7 +23,7 @@ const Footer = () => {
         marginLeft: "0",
         top: "10px",
         left: "10px",
-        width: isSmallScreen ? "94.5%" : "97.5%",
+        width: isSmallScreen ? "94.5%" : "99%",
         marginTop: "70px",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
        

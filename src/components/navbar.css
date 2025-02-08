@@ -1,9 +1,10 @@
 /* Navbar styles */
 .navbar {
     position: fixed; 
+    margin-left:-15px;
     top: 10px;
     left: 10px;
-    width: 97%; 
+    width: 99%; 
     z-index: 1000; /* Ensure it stays on top of other elements */
     background: linear-gradient(90deg, #dce1e7, #a871a1, #1f021b); /* Dark to light blue gradient */
     color: white; /* Text color */
@@ -111,7 +112,7 @@ body {
         position: fixed; 
         top: 10px;
         left: 10px;
-        width: 90%; 
+        width: 95%; 
         z-index: 1000; /* Ensure it stays on top of other elements */
         background: linear-gradient(90deg, #dce1e7, #a871a1, #1f021b); /* Dark to light blue gradient */
         color: white; /* Text color */

@@ -78,16 +78,13 @@ const Homepage = () => {
         borderRadius: "10px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
         textAlign: "left",
-        
-        
-       
         marginLeft: "0",
         color: "white",
         top: "0px",
         left: "0px",
-        width: isSmallScreen?"92%":"97.5%",
+        width: isSmallScreen?"92%":"98%",
         marginTop: "70px",
-        overflowX: "hidden",
+        overflow: "hidden",
         padding: "1rem",
         position: "absolute",
         overflowY:"hidden"
