@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import HomePage from "./pages/homepage";
 import Updates from "./pages/update";
 import Contact from "./pages/contact";
+import Signin from "./pages/Signin";
 
 const App = () => {
   return (
@@ -25,6 +26,8 @@ const App = () => {
            
             <Route path="/updates" element={<Updates />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/signin" element={<Signin />} />
+
           </Routes>
         </main>
         <Footer />

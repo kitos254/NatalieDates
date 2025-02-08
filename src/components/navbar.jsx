@@ -69,6 +69,16 @@ const Navbar = () => {
                 >
                   Contact
                 </Link>
+                
+              </li>
+              <li>
+              <Link
+                  to="https://forms.gle/eR1Body1XMVwWkvv7"
+                  className="nav-item"
+                  onClick={handleMenuItemClick}
+                >
+                  HookUp
+                </Link>
               </li>
             </ul>
           </div>
