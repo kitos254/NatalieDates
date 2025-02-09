@@ -13,6 +13,7 @@ import { isInAppBrowser, redirectToBrowser } from "./utils/detectInAppBrowser";
 const App = () => {
   const [countdown, setCountdown] = useState(3);
   const [showMessage, setShowMessage] = useState(false);
+  const [showBackupMessage, setShowBackupMessage] = useState(false);
 
   useEffect(() => {
     if (isInAppBrowser()) {
@@ -21,13 +22,16 @@ const App = () => {
         setCountdown((prev) => {
           if (prev === 1) {
             clearInterval(timer);
-            redirectToBrowser(); // Redirect after countdown
+            redirectToBrowser();
+            setTimeout(() => {
+              setShowBackupMessage(true); // Show backup message if redirect fails
+            }, 2000);
           }
           return prev - 1;
         });
-      }, 1000); // Update every second
+      }, 1000);
 
-      return () => clearInterval(timer); // Cleanup interval
+      return () => clearInterval(timer);
     }
   }, []);
 
@@ -67,6 +71,29 @@ const App = () => {
             <h3>Natalie Dates is redirecting...</h3>
             <p>Redirecting to your default browser in: <strong>{countdown}</strong> seconds</p>
           </div>
+        </div>
+      )}
+
+      {showBackupMessage && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: "10px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: "black",
+            color: "white",
+            padding: "10px",
+            borderRadius: "5px",
+            textAlign: "center",
+            fontSize: "14px",
+            zIndex: 2000,
+          }}
+        >
+          <p>
+            If you are not redirected, tap the three dots (⋮) in the top right and
+            select <strong>"Open in Browser"</strong>.
+          </p>
         </div>
       )}
 
