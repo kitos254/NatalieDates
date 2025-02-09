@@ -16,9 +16,6 @@ const App = () => {
   useEffect(() => {
     if (isInAppBrowser()) {
       setShowMessage(true);
-      setTimeout(() => {
-        redirectToBrowser();
-      }, 3000); // Show message for 3 seconds before redirecting
     }
   }, []);
 
@@ -35,19 +32,60 @@ const App = () => {
         <div
           style={{
             position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            backgroundColor: "white",
-            padding: "20px",
-            borderRadius: "8px",
-            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-            textAlign: "center",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             zIndex: 1000,
           }}
         >
-          <h3>Natalie Dates wants you to open in Chrome</h3>
-          <p>Redirecting in 3 seconds...</p>
+          <div
+            style={{
+              backgroundColor: "white",
+              padding: "25px",
+              borderRadius: "8px",
+              textAlign: "center",
+              boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <h3>Open Natalie Dates in Your Browser</h3>
+            <p>For a better experience, open this site in a real browser.</p>
+            <button
+              onClick={redirectToBrowser}
+              style={{
+                marginTop: "10px",
+                padding: "10px 20px",
+                border: "none",
+                backgroundColor: "#007BFF",
+                color: "white",
+                borderRadius: "5px",
+                cursor: "pointer",
+                fontSize: "16px",
+              }}
+            >
+              Open in Browser
+            </button>
+            <br />
+            <button
+              onClick={() => setShowMessage(false)}
+              style={{
+                marginTop: "10px",
+                padding: "8px 16px",
+                border: "none",
+                backgroundColor: "#ccc",
+                color: "#333",
+                borderRadius: "5px",
+                cursor: "pointer",
+                fontSize: "14px",
+              }}
+            >
+              Stay Here
+            </button>
+          </div>
         </div>
       )}
 
